@@ -1,9 +1,11 @@
 # First-order plus deadtime (FOPDT) model system id
 
 This library implements a gradient-approach to fit a first-order plus deadtime (FOPDT) model to input and output data. Specifically, it fits the following model
+
 $$
 \tau \frac{d}{dt} y(t) =  - y(t) + K u(t - \theta).
 $$
+
 Where $y$ is the output, $u$ the input, $t$ is time. The unknown parameters that are estimated are
 - $\tau$ = process time constant
 - $K$ = process gain
