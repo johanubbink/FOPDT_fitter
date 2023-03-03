@@ -35,6 +35,8 @@ theta_0 = 0
 tua, K, theta = FOPDT_fitter.fit_model(tua_0, K_0, theta_0, u, y, t)
 ```
 
+![alt text](example.png)
+
 ## The algorithm
 The library makes use of the [Gauss–Newton algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm) to solve a non-linear least squares problem in which the residuals are penalized. A [backtracking line search](https://en.wikipedia.org/wiki/Backtracking_line_search) is implemented as a globalization strategy.
 
