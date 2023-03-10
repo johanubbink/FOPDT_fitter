@@ -98,36 +98,36 @@ def line_search(a, b, theta, u, y, t, delta, c):
     return 0
 
 
-def convert_to_a_b(tua, K):
+def convert_to_a_b(tau, K):
     """
     Converts the parameters to the form used in the model
     """
-    a = -1/tua
-    b = K/tua
+    a = -1/tau
+    b = K/tau
     return a, b
 
 
-def convert_to_tua_K(a, b):
+def convert_to_tau_K(a, b):
     """
     Converts the parameters to the form used in the optimization problem
     """
-    tua = -1/a
-    K = b*tua
-    return tua, K
+    tau = -1/a
+    K = b*tau
+    return tau, K
 
 
-def fit_model(tua_0, K_0, theta_0, u, y, t, max_iters=150, c=0.5, verbose=False):
+def fit_model(tau_0, K_0, theta_0, u, y, t, max_iters=150, c=0.5, verbose=False):
     """
-    Solves an optimization problem to find the values of the parameters `tua`, `K`, and `theta`
+    Solves an optimization problem to find the values of the parameters `tau`, `K`, and `theta`
     that minimize the sum of squared residuals between the input `u`, its time derivative `u_dot`,
     and the output `y`.
     """
     start_time = time.time()
 
     # Define initial parameter values
-    # tua = tua_0
+    # tau = tau_0
     # K = K_0
-    a, b = convert_to_a_b(tua_0, K_0)
+    a, b = convert_to_a_b(tau_0, K_0)
     theta = theta_0
 
     iter_count = 0
@@ -141,9 +141,9 @@ def fit_model(tua_0, K_0, theta_0, u, y, t, max_iters=150, c=0.5, verbose=False)
 
         if verbose:
             # Print current parameter values and objective function
-            tua, K = convert_to_tua_K(a, b)
+            tau, K = convert_to_tau_K(a, b)
             print(
-                f"Iteration {iter_count}: S = {S:.5f}, tua = {tua:.5f}, K = {K:.5f}, theta = {theta:.5f}, alpha = {alpha:.5f}")
+                f"Iteration {iter_count}: S = {S:.5f}, tau = {tau:.5f}, K = {K:.5f}, theta = {theta:.5f}, alpha = {alpha:.5f}")
 
         # Calculate the Jacobian of the residuals
         J_res = J_residual(a, b, theta, u, y, t)
@@ -168,11 +168,11 @@ def fit_model(tua_0, K_0, theta_0, u, y, t, max_iters=150, c=0.5, verbose=False)
 
         iter_count += 1
 
-    tua, K = convert_to_tua_K(a, b)
+    tau, K = convert_to_tau_K(a, b)
 
     # Print solution and total time taken to solve optimization problem
     if verbose:
-        print(f"\nSolution: tua = {tua:.5f}, K = {K:.5f}, theta = {theta:.5f}")
+        print(f"\nSolution: tau = {tau:.5f}, K = {K:.5f}, theta = {theta:.5f}")
         print(f"Total time taken: {time.time() - start_time:.5f} seconds")
 
-    return tua, K, theta
+    return tau, K, theta
