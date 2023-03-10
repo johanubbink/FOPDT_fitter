@@ -17,7 +17,7 @@ Where $y$ is the output, $u$ the input, $t$ is time. The unknown parameters that
 - Matplotlib (for plotting)
 
 ## Contents
-- [FOPDT_filter.py](FOPDT_filter.py) contains the library for model fitting.
+- [FOPDT_fitter.py](FOPDT_fitter.py) contains the library for model fitting.
 - [example.ipynb](example.ipynb) shows and example using the library.
 
 ## Usage
