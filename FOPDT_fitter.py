@@ -168,9 +168,10 @@ def fit_model(tua_0, K_0, theta_0, u, y, t, max_iters=150, c=0.5, verbose=False)
 
         iter_count += 1
 
+    tua, K = convert_to_tua_K(a, b)
+
     # Print solution and total time taken to solve optimization problem
     if verbose:
-        tua, K = convert_to_tua_K(a, b)
         print(f"\nSolution: tua = {tua:.5f}, K = {K:.5f}, theta = {theta:.5f}")
         print(f"Total time taken: {time.time() - start_time:.5f} seconds")
 
